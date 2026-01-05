@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Experto - Diagnóstico de Fallas en Computadoras</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-microchip"></i> Sistema Experto de Diagnóstico</h1>
+                <p class="subtitle">Base de conocimientos con 500 reglas para diagnóstico técnico</p>
+            </div>
+        </header>
+
+        <!-- Panel de búsqueda y filtros -->
+        <section class="search-panel">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por síntomas o condiciones (ej: computadora_no_enciende, pantalla_azul...)">
+                <button id="searchBtn" class="btn-primary">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="categoriaFilter">
+                        <i class="fas fa-filter"></i> Categoría:
+                    </label>
+                    <select id="categoriaFilter">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="certezaFilter">
+                        <i class="fas fa-chart-line"></i> Certeza mínima:
+                    </label>
+                    <input type="range" id="certezaFilter" min="0" max="100" value="0">
+                    <span id="certezaValue">0%</span>
+                </div>
+
+                <button id="clearFilters" class="btn-secondary">
+                    <i class="fas fa-times"></i> Limpiar filtros
+                </button>
+            </div>
+        </section>
+
+        <!-- Panel de condiciones seleccionadas -->
+        <section class="selected-conditions" id="selectedConditions" style="display: none;">
+            <h3><i class="fas fa-list-check"></i> Condiciones seleccionadas:</h3>
+            <div id="conditionsList" class="conditions-list"></div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="results-section">
+            <div class="results-header">
+                <h2 id="resultsTitle">Reglas disponibles</h2>
+                <span id="resultsCount" class="badge">0 resultados</span>
+            </div>
+            <div id="resultsContainer" class="results-container">
+                <!-- Los resultados se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Modal para detalles de regla -->
+        <div id="ruleModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
+
